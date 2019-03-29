@@ -1,0 +1,10 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Set root password
+      become: true
+      user:
+        name: root
+        password: $6$FxtnEqQoM1b$Gg7hirHNZGgBrKUQy4nH1g6wVnwPs1lEbe0OKI5o0cYtoubKhQG87ez.U.e2tOV9p1SJE0MJDikHEIkb2GDZJ0  # vagrant

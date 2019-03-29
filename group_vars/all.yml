@@ -1,0 +1,32 @@
+---
+
+# Common
+
+unprivileged_user:
+
+## SSH
+
+ssh_pub_key: ~/.ssh/id_rsa.pub  # Local path to your public SSH key
+
+## ansible-role-interfaces
+
+## dropbear_luks
+
+dropbear:
+  ssh_pub_key: ~/.ssh/id_rsa.pub  # Local path to your public SSH key
+  # static_ip:
+  # remote_ip:
+  # gateway:
+  # netmask:
+  # hostname:
+  network_interface: "{{ ansible_default_ipv4.interface }}"
+  # ssh_port:
+
+## ddclient
+
+ddclient_web:
+ddclient_protocol:
+ddclient_server:
+ddclient_login:
+ddclient_pass:
+ddclient_updated_domain:

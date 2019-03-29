@@ -1,0 +1,47 @@
+---
+dependency:
+  name: galaxy
+  enabled: false
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint:
+  name: yamllint
+platforms:
+  - name: stretch
+    box: debian/stretch64
+    interfaces:
+      - network_name: private_network
+        auto_config: true
+        ip: 172.16.100.12
+        type: static
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ../../full.yml
+  options:
+    become: true
+    extra-vars:
+      ansible_sudo: true
+      ansible_become_pass: vagrant
+      ssh_pub_key: ~/.ssh/id_rsa.pub
+      dropbear:
+        ssh_pub_key: ~/.ssh/id_rsa.pub
+        static_ip: 172.16.100.12
+        gateway: 10.0.2.2
+        netmask: 255.255.255.0
+        hostname: stretch
+        network_interface: eth1
+  env:
+    ANSIBLE_ROLES_PATH: ../../../../roles
+  lint:
+    name: ansible-lint
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  options:
+    sudo: true
+  lint:
+    name: flake8

@@ -1,0 +1,66 @@
+---
+
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  become: true
+  become_method: su
+  tags: prepare
+  tasks:
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      changed_when: false
+
+    - name: Install sudo
+      package:
+        name: sudo
+        state: present
+
+    - name: Add unprivileged user to sudo group
+      user:
+        name: "{{ unprivileged_user }}"
+        groups: sudo
+        append: true
+
+- name: Copy SSH public key to the remote server
+  hosts: all
+  gather_facts: true
+  tags: ssh
+  tasks:
+    - name: Copy SSH public key to the remote server
+      authorized_key:
+        user: "{{ ansible_user_id }}"
+        state: present
+        key: "{{ lookup('file', ssh_pub_key) }}"
+
+- name: Configure network interfaces
+  hosts: all
+  become: true
+  gather_facts: true
+  tags: interfaces
+  roles:
+    - role: ansible-role-interfaces
+
+- name: Setup dropbear in initramfs
+  hosts: all
+  become: true
+  gather_facts: true
+  tags: dropbear
+  vars:
+    ssh_pub_key: "{{ dropbear.ssh_pub_key }}"
+    static_ip: "{{ dropbear.static_ip | default('') }}"
+    remote_ip: "{{ dropbear.remote_ip | default('') }}"
+    gateway: "{{ dropbear.gateway | default('') }}"
+    netmask: "{{ dropbear.netmask | default('') }}"
+    hostname: "{{ dropbear.hostname | default('') }}"
+    network_interface: "{{ dropbear.network_interface }}"
+    ssh_port: "{{ dropbear.ssh_port }}"
+  roles:
+    - role: dropbear_luks
+
+- name: Deploy ddclient
+  hosts: all
+  become: true
+  tags: ddclient
+  roles:
+    - role: ddclient
