@@ -21,6 +21,14 @@ on debian stretch.
 
 `python` and `sudo`.
 
+## Dependencies
+
+Included as submodules in *roles/*.
+
+* [dropbear_luks](https://github.com/anarres-org/dropbear_luks)
+* [ansible-role-interfaces](https://github.com/michaelrigart/ansible-role-interfaces)
+* [ddclient](https://github.com/anarres-org/ddclient)
+
 ## Playbook Variables
 
 ### ansible-role-interfaces
@@ -47,11 +55,6 @@ names from the role.
 ### ddclient
 
 You must include directly the variables for this role if used.
-
-## Dependencies
-
-* [dropbear_luks](https://github.com/anarres-org/dropbear_luks)
-* [ansible-role-interfaces](https://github.com/michaelrigart/ansible-role-interfaces)
 
 ## Testing
 

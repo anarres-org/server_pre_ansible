@@ -1,0 +1,9 @@
+[submodule "roles/dropbear_luks"]
+	path = roles/dropbear_luks
+	url = https://github.com/anarres-org/dropbear_luks
+[submodule "roles/ddclient"]
+	path = roles/ddclient
+	url = https://github.com/anarres-org/ddclient
+[submodule "roles/ansible-role-interfaces"]
+	path = roles/ansible-role-interfaces
+	url = https://github.com/michaelrigart/ansible-role-interfaces
