@@ -27,6 +27,7 @@ provisioner:
     extra-vars:
       ansible_sudo: true
       ansible_become_pass: vagrant
+      unprivileged_user: molecule
       ssh_pub_key: ~/.ssh/id_rsa.pub
       dropbear:
         ssh_pub_key: ~/.ssh/id_rsa.pub
