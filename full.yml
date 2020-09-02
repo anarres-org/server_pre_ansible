@@ -44,7 +44,7 @@
 - name: Setup dropbear in initramfs
   hosts: all
   become: true
-  gather_facts: true
+  gather_facts: false
   tags: dropbear
   vars:
     ssh_pub_key: "{{ dropbear.ssh_pub_key }}"
