@@ -24,7 +24,12 @@ on debian buster.
 
 ## Dependencies
 
-Included as submodules in *roles/*.
+Included as submodules in *roles/*. To fetch them automatically when cloning,
+use:
+
+```bash
+git clone --recurse-submodules -j10 [repo]
+```
 
 * [dropbear_luks](https://github.com/anarres-org/dropbear_luks)
 * [ansible-role-interfaces](https://github.com/michaelrigart/ansible-role-interfaces)
@@ -60,7 +65,8 @@ You must include directly the variables for this role if used.
 ## Testing
 
 To test the role you need [molecule](http://molecule.readthedocs.io/en/latest/)
-.
+. You also need to have a valid SSH public key in *~/.ssh/id_rsa.pub*. If you
+don't have one, you can create it with: `ssh-keygen -C test -f ~/.ssh/id_rsa`.
 
 ```bash
 molecule test
