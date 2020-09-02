@@ -2,6 +2,11 @@
 
 extends: default
 
+ignore: |
+  roles/
+  molecule/
+  library/
+
 rules:
   braces:
     max-spaces-inside: 1
