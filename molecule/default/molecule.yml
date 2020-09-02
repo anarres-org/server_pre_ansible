@@ -36,6 +36,7 @@ provisioner:
         netmask: 255.255.255.0
         hostname: buster
         network_interface: eth1
+        ssh_port: 22
 scenario:
   name: default
 verifier:
