@@ -8,14 +8,15 @@ configurations afterwards.
 
 This playbook will cover:
 
-* Install `python` and `sudo`. So ansible can run properly.
+* Install `python` and `sudo` on the target host(s). So ansible can run
+   properly.
 * Setup a `busybox` and `dropbear` SSH server in the initramfs with a static IP
    so you can remotely login to the server and unlock the LUKS encrypted disks.
 
 ## Compatibility
 
 This role should work in any distro from the **Debian** family. It is tested
-on debian stretch.
+on debian buster.
 
 ## Requirements
 
@@ -71,4 +72,4 @@ GPLv3
 
 ## Author Information
 
-m0wer (at) autistici.org
+m0wer: m0wer (at) autistici (dot) org

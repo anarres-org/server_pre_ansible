@@ -12,7 +12,7 @@
       changed_when: false
 
     - name: Install sudo
-      package:
+      apt:
         name: sudo
         state: present
 
